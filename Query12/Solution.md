@@ -12,7 +12,7 @@ Get all the below fields
 - PRODUCT_STORE_ID
 
 **Solution –** 
-```
+```sql
 SELECT
     rh.RETURN_ID,
     rh.ENTRY_DATE,

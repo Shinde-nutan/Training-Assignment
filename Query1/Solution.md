@@ -14,7 +14,7 @@ Fetch the following columns for completed order items for sales orders of SM_STO
 - PRODUCT_STORE_ID – oh
 
 **Solution –**
-```
+```sql
 SELECT 
     oh.ORDER_ID, 
     oi.ORDER_ITEM_SEQ_ID,

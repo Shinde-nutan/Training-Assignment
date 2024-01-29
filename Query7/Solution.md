@@ -1,7 +1,7 @@
 Fetch all the phisical items ordered in the month of September 2023.
 
 **Solution –** 
-```
+```sql
 SELECT
     oi.ORDER_ID,
     oi.ORDER_ITEM_SEQ_ID,

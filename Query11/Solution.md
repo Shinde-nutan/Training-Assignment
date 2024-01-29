@@ -1,7 +1,7 @@
 Fetch all the customers in June 2023.
 
 **Solution –**
-``` 
+```sql
 SELECT     
 p.PARTY_ID,     
 p.PARTY_TYPE_ID,     

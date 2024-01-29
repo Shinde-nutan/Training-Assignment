@@ -5,7 +5,7 @@ Fetch the following data for completed order items in July of 2023
 - SHOPIFY_PRODUCT_ID
 
 **Solution –** 
-```
+```sql
 SELECT
     oi.ORDER_ID,
     oi.ORDER_ITEM_SEQ_ID

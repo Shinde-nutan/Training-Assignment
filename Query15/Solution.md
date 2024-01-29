@@ -1,7 +1,7 @@
 Find all the orders that have more than one return.
 
 **Solution –**
-``` 
+```sql
 SELECT
     ri.ORDER_ID,
     COUNT(ri.RETURN_ID) AS ReturnCount

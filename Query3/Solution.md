@@ -1,7 +1,7 @@
 Fetch the order id and contact mech id for the shipping address of the orders completed in October of 2023.
 
 **Solution –**
-```
+```sql
 SELECT 
     oh.ORDER_ID,
     oc.CONTACT_MECH_ID

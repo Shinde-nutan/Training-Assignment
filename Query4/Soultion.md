@@ -8,7 +8,7 @@ The total amount represents the total amount of the order.
 The payment method is the method by which payment was made, like Cash, mastercard, visa, paypal, etc.
 
 **Solution –** 
-```
+```sql
 SELECT     
     oh.ORDER_ID,     
     oi.QUANTITY * oi.UNIT_PRICE AS TOTAL_AMOUNT,     
@@ -24,7 +24,7 @@ WHERE
 GROUP BY oh.ORDER_ID;
 ```
 In the above we does not consider all approaches.
-```
+```sql
 SELECT      
 oh.ORDER_ID,      
 oh.grand_Total,     

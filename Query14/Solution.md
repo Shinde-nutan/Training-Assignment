@@ -1,7 +1,7 @@
 Fetch the inventory variances of the products where the reason is ‘VAR_LOST’ or VAR_DAMAGED.
 
 **Solution –** 
-```
+```sql
 SELECT
     i_item.PRODUCT_ID,
     iv.PHYSICAL_INVENTORY_ID

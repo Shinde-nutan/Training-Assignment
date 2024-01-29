@@ -14,7 +14,7 @@ Fetch the following details for orders completed in August of 2023.
 
 **Solution –**
 
-```
+```sql
    SELECT
     oi.PRODUCT_ID,
     p.PRODUCT_TYPE_ID,

@@ -10,7 +10,7 @@ Fetch the following columns for completed return items of SM_STORE for ecom retu
 - RETURN_CHANNEL_ENUM_ID –rh
 
 **Solution –**
-```
+```sql
 SELECT
     rh.RETURN_ID,
     oh.ORDER_ID,

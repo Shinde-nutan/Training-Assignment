@@ -1,7 +1,7 @@
 Fetch all the physical items completed from Warehouse in September of 2023.
 
 **Solution –**
-```
+```sql
 SELECT
     oi.ORDER_ID,
     oi.ORDER_ITEM_SEQ_ID,
