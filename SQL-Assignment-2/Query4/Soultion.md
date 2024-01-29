@@ -10,10 +10,10 @@ The payment method is the method by which payment was made, like Cash, mastercar
 **Solution –** 
 ```sql
 SELECT     
-    oh.ORDER_ID,     
-    oi.QUANTITY * oi.UNIT_PRICE AS TOTAL_AMOUNT,     
-    pmt.description,
-    oi_id.ORDER_IDENTIFICATION_TYPE_ID AS SHOPIFY_ORD_NAME
+oh.ORDER_ID,     
+oi.QUANTITY * oi.UNIT_PRICE AS TOTAL_AMOUNT,     
+pmt.description,
+oi_id.ID_VALUE AS SHOPIFY_ORD_NAME
 FROM order_header oh 
 JOIN Order_Item oi USING(order_id)
 JOIN Order_Payment_Preference opp ON oh.ORDER_ID = opp.ORDER_ID 
@@ -22,6 +22,7 @@ JOIN Order_Identification oi_id ON oi_id.ORDER_ID = oi.ORDER_ID
 WHERE
  oi_id.ORDER_IDENTIFICATION_TYPE_ID = 'SHOPIFY_ORD_NAME' AND oh.ORDER_TYPE_ID = 'SALES_ORDER' AND oh.status_id = 'ORDER_CREATED'
 GROUP BY oh.ORDER_ID;
+
 ```
 In the above we does not consider all approaches.
 ```sql
@@ -29,7 +30,7 @@ SELECT
 oh.ORDER_ID,      
 oh.grand_Total,     
 pmt.description, 
-oi_id.ORDER_IDENTIFICATION_TYPE_ID AS SHOPIFY_ORD_NAME
+oi_id.ID_VALUE AS SHOPIFY_ORD_NAME
 FROM order_header oh  
 JOIN Order_Payment_Preference opp ON oh.ORDER_ID = opp.ORDER_ID  
 JOIN Order_Identification oi_id ON oi_id.ORDER_ID = oh.ORDER_ID 

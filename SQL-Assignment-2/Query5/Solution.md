@@ -8,7 +8,9 @@ Fetch the following data for completed order items in July of 2023
 ```sql
 SELECT
     oi.ORDER_ID,
-    oi.ORDER_ITEM_SEQ_ID
+    oi.ORDER_ITEM_SEQ_ID,
+    oi_id.ID_VALUE,
+    gi.ID_VALUE
 FROM
     Order_Item oi
 JOIN
