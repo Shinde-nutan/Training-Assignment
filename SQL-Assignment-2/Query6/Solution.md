@@ -23,3 +23,6 @@ WHERE
     AND MONTH(os.STATUS_DATETIME) = 9
     AND YEAR(os.STATUS_DATETIME) = 2023;
 ```
+
+**Execution Plan**
+COST - 52,171.7

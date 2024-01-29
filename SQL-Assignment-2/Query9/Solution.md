@@ -14,3 +14,6 @@ WHERE
 GROUP BY oi.ORDER_ID
 HAVING COMPLETED_ITEMS_COUNT >= 2;
 ```
+
+**Execution Plan**
+COST - -57,063.71

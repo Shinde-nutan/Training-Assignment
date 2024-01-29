@@ -9,3 +9,6 @@ FROM return_item ri
 GROUP BY ri.ORDER_ID
 HAVING COUNT(ri.RETURN_ID) > 1;
 ```
+
+**Execution Plan**
+COST - 426.8

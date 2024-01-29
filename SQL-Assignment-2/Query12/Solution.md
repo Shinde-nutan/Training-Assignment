@@ -30,3 +30,6 @@ WHERE
     ra.RETURN_ADJUSTMENT_TYPE_ID = 'APPEASEMENT'
     AND MONTH(rh.ENTRY_DATE) = 7;
 ```
+
+**Execution Plan**
+COST - 973.8

@@ -37,3 +37,6 @@ WHERE oh.PRODUCT_STORE_ID = 'SM_STORE'
 AND oh.ORDER_TYPE_ID = 'SALES_ORDER' 
 AND os.STATUS_ID = 'Item_completed' AND pt.IS_PHYSICAL = 'Y';
 ```
+
+**Execution Plan**
+COST - 40,561.52

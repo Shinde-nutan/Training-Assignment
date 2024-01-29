@@ -40,3 +40,6 @@ WHERE
     AND os.STATUS_DATETIME < '2023-09-01'
 GROUP BY oi.PRODUCT_ID;
 ```
+
+**Execution Plan**
+COST - 19,821.26

@@ -50,3 +50,6 @@ WHERE
     os.STATUS_ID = 'ITEM_CREATED'
     AND oh.ORDER_TYPE_ID = 'SALES_ORDER';
 ```
+
+**Execution Plan**
+COST - 171,587.11
