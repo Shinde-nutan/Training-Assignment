@@ -27,6 +27,9 @@ ORDER BY
 LIMIT 1;
 ```
 
+**Query Cost**
+12,986.1
+
 WHEN USING THE SHIPPING_LOCATION
 
 ```sql
@@ -51,3 +54,6 @@ ORDER BY
     SalesCount DESC
 LIMIT 1;
 ```
+
+**Query Cost**
+16,206.03

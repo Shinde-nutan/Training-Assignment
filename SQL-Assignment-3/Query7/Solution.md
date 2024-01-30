@@ -16,3 +16,6 @@ GROUP BY
 ORDER BY
     ReturnCount DESC;
 ```
+
+**Query Cost**
+125.8

@@ -16,3 +16,6 @@ GROUP BY
 HAVING
     COUNT(DISTINCT rh.RETURN_ID) = 1;
 ```
+
+**Query Cost**
+1,432.19

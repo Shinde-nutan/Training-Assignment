@@ -23,3 +23,6 @@ ORDER BY
     OneDayShippedOrdersCount DESC
 LIMIT 1;
 ```
+
+**Query Cost**
+8,735.04

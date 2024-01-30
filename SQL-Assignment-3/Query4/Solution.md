@@ -13,3 +13,6 @@ JOIN
 WHERE
     pa.CITY = 'New York';
 ```
+
+**Query Cost**
+11,244.17

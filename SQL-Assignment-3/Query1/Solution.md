@@ -21,3 +21,5 @@ WHERE
 GROUP BY oi.ORDER_ID
 HAVING COUNT(oi.ORDER_ITEM_SEQ_ID) = 1;
 ```
+**Query Cost**
+9,242.1
