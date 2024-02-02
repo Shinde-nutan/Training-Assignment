@@ -5,7 +5,7 @@ Fetch the following data for completed order items in July of 2023
 - SHOPIFY_PRODUCT_ID
 
 **Solution –** 
-    ```sql
+    ``` sql
     SELECT
         oi.ORDER_ID,
         oi.ORDER_ITEM_SEQ_ID,
@@ -20,7 +20,7 @@ Fetch the following data for completed order items in July of 2023
     JOIN
         Good_Identification gi ON oi.PRODUCT_ID = gi.PRODUCT_ID
     WHERE
-        os.STATUS_ID = 'ORDER_COMPLETED'
+        os.STATUS_ID = 'ITEM_COMPLETED'
         AND MONTH(os.STATUS_DATETIME) = 7
         AND YEAR(os.STATUS_DATETIME) = 2023
         AND oi_id.ORDER_IDENTIFICATION_TYPE_ID = 'SHOPIFY_ORD_ID'
