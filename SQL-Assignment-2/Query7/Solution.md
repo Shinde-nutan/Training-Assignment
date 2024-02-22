@@ -1,4 +1,4 @@
-Fetch all the phisical items ordered in the month of September 2023.
+Fetch all the physical items ordered in the month of September 2023.
 
 **Solution –** 
 ```sql
@@ -17,8 +17,8 @@ WHERE
     pt.IS_PHYSICAL = 'Y'
     AND MONTH(os.STATUS_DATETIME) = 9
     AND YEAR(os.STATUS_DATETIME) = 2023
-    AND os.STATUS_ID = 'ORDER_CREATED';
+    AND os.STATUS_ID = 'ITEM_CREATED';
 ```
 
 **Execution Plan**
-COST - 135,043.02
+COST - 192,883.91
