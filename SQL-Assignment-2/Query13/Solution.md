@@ -15,31 +15,34 @@ Fetch the following details for orders completed in August of 2023.
 **Solution –**
 
 ```sql
-   SELECT
-    oi.PRODUCT_ID,
-    p.PRODUCT_TYPE_ID,
-    oh.PRODUCT_STORE_ID,
-    SUM(oi.QUANTITY) AS TOTAL_QUANTITY,
-    p.INTERNAL_NAME,
-    ohist.ORDER_HISTORY_ID,
-    f.FACILITY_ID,
-    f.EXTERNAL_ID,
-    f.FACILITY_TYPE_ID,
-    oi.ORDER_ID,
-    oi.ORDER_ITEM_SEQ_ID,
-    oi.SHIP_GROUP_SEQ_ID
-FROM order_item oi
-JOIN product p ON oi.PRODUCT_ID = p.PRODUCT_ID
-JOIN order_header oh ON oi.ORDER_ID = oh.ORDER_ID
-JOIN facility f ON oh.ORIGIN_FACILITY_ID = f.FACILITY_ID
-JOIN order_history ohist ON oi.ORDER_ID = ohist.ORDER_ID AND oi.ORDER_ITEM_SEQ_ID = ohist.ORDER_ITEM_SEQ_ID
-JOIN order_status os ON oh.ORDER_ID = os.ORDER_ID
+SELECT 
+  oi.PRODUCT_ID, 
+  p.PRODUCT_TYPE_ID, 
+  oh.PRODUCT_STORE_ID, 
+  SUM(oi.QUANTITY) AS TOTAL_QUANTITY, 
+  p.INTERNAL_NAME, 
+  ohist.ORDER_HISTORY_ID, 
+  p.FACILITY_ID, 
+  oh.EXTERNAL_ID, 
+  f.FACILITY_TYPE_ID, 
+  oi.ORDER_ID, 
+  oi.ORDER_ITEM_SEQ_ID, 
+  oi.SHIP_GROUP_SEQ_ID 
+FROM 
+  order_item oi 
+  JOIN product p ON oi.PRODUCT_ID = p.PRODUCT_ID 
+  JOIN order_header oh ON oi.ORDER_ID = oh.ORDER_ID  
+  JOIN facility f ON p.facility_id = f.facility_id 
+  JOIN order_history ohist ON oi.ORDER_ID = ohist.ORDER_ID 
+  AND oi.ORDER_ITEM_SEQ_ID = ohist.ORDER_ITEM_SEQ_ID 
+  JOIN order_status os ON oh.ORDER_ID = os.ORDER_ID 
 WHERE 
-    os.STATUS_ID = 'ORDER_COMPLETED'
-    AND os.STATUS_DATETIME >= '2023-08-01'
-    AND os.STATUS_DATETIME < '2023-09-01'
-GROUP BY oi.PRODUCT_ID;
+  os.STATUS_ID = 'ORDER_COMPLETED' 
+  AND os.STATUS_DATETIME >= '2023-08-01' 
+  AND os.STATUS_DATETIME < '2023-09-01' 
+GROUP BY 
+  oi.PRODUCT_ID;
 ```
 
 **Execution Plan**
-COST - 19,821.26
+COST - 21,124.02 
