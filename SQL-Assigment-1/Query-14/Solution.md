@@ -7,14 +7,14 @@ Shipping Refund in the last month:
 SELECT 
   SUM(ra.amount) AS TotalRefundForShipping 
 FROM 
-  Return_Adjustment ra 
-  JOIN return_status rs USING (return_id) 
+  return_adjustment ra 
+  JOIN return_status rs ON ra.return_id = rs.return_id 
 WHERE 
-  return_Adjustment_Type_Id = 'RET_SHIPPING_ADJ' 
-  AND STATUS_DATETIME >= DATE_SUB(
-    CURDATE(), 
-    INTERVAL 1 MONTH
-  );
+  ra.return_adjustment_type_id = 'RET_SHIPPING_ADJ' 
+  AND rs.status_datetime >= DATE_FORMAT(
+    CURRENT_DATE - INTERVAL 1 MONTH, '%Y/%m/01'
+  ) 
+  AND rs.status_datetime < DATE_FORMAT(CURRENT_DATE, '%Y/%m/01');
 ``` 
 **Execution Cost --**   
 1,040.83
