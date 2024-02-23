@@ -10,7 +10,7 @@ SELECT
 FROM
     shipment_status ss
 GROUP BY
-    YEAR(status_date);
+    YEAR(ss.status_date);
 ```
 
 **Execution Cost --**   
