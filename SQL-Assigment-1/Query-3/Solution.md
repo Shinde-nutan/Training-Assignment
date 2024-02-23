@@ -4,28 +4,14 @@ Average number of shipments per month:
 
 **Solution**
 ```sql
-SELECT 
-  TotalShipments, 
-  TotalMonths, 
-  TotalShipments / TotalMonths AS AverageShipmentsPerMonth 
-FROM 
-  (
-    SELECT 
-      COUNT(DISTINCT SHIPMENT_ID) AS TotalShipments 
-    FROM 
-      shipment_status 
-    WHERE 
-      STATUS_ID = 'SHIPMENT_SHIPPED'
-  ) AS ShipmentCount, 
-  (
-    SELECT 
-      COUNT(
-        DISTINCT DATE_FORMAT(STATUS_DATE, '%Y-%m')
-      ) AS TotalMonths 
-    FROM 
-      shipment_status
-  ) AS MonthCount;
+SELECT
+    YEAR(ss.status_date) AS year,
+    COUNT(ss.shipment_id) / 12 AS Average_Shipments_Per_Month
+FROM
+    shipment_status ss
+GROUP BY
+    YEAR(status_date);
 ```
 
 **Execution Cost --**   
-1
+18,887
