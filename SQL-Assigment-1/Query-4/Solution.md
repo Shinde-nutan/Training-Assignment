@@ -5,16 +5,16 @@ Shipped units By Location:
 **Solution**
 ```sql
 SELECT 
-  s.ORIGIN_FACILITY_ID AS Location, 
-  SUM(si.QUANTITY) AS ShippedUnits 
+  s.origin_facility_id AS Location, 
+  SUM(si.quantity) AS ShippedUnits 
 FROM 
   shipment s 
-  JOIN shipment_status ss ON s.SHIPMENT_ID = ss.SHIPMENT_ID 
-  JOIN shipment_item si ON s.SHIPMENT_ID = si.SHIPMENT_ID 
+  JOIN shipment_status ss ON s.shipment_id = ss.shipment_id 
+  JOIN shipment_item si ON s.shipment_id = si.shipment_id 
 WHERE 
   ss.STATUS_ID = 'SHIPMENT_SHIPPED' 
 GROUP BY 
-  Location;
+  s.origin_facility_id ;
 ```
 
 **Execution Cost --**   
