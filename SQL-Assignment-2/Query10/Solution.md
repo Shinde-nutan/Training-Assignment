@@ -19,7 +19,8 @@ Fetch all the order items that are in the created status and the order type shou
 - SHIP_ADDRESS2
 
 **Solution –** 
-```sqlSELECT 
+```sql
+SELECT 
   oi.ORDER_ID, 
   p.PRODUCT_TYPE_ID, 
   oi.ORDER_ITEM_SEQ_ID, 
