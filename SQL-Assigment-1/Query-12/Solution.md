@@ -19,7 +19,7 @@ FROM
 GROUP BY 
   oisg.FACILITY_ID  
 ORDER BY 
-  TotalUnitsFulfilled DESC 
+  SUM(oi.quantity) DESC 
 LIMIT 
   1;
 ```
