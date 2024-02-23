@@ -11,7 +11,7 @@ FROM
   shipment_status ss 
 WHERE 
   ss.STATUS_DATE >= '2022-01-01' 
-  AND ss.STATUS_DATE < '2022-01-31' 
+  AND ss.STATUS_DATE <= '2022-01-31' 
   AND STATUS_ID = 'SHIPMENT_SHIPPED';
 ```
 
