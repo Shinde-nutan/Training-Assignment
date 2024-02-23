@@ -13,9 +13,9 @@ WHERE
   os.STATUS_ID = 'ORDER_COMPLETED' 
   AND DATE(os.STATUS_DATETIME) = '2023-01-06' 
 GROUP BY 
-  HourOfDay 
+  HOUR(os.STATUS_DATETIME) 
 ORDER BY 
-  HourOfDay;
+  HOUR(os.STATUS_DATETIME);
 ```
 **Execution Cost --**   
 6,585.4
