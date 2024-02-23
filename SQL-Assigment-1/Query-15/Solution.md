@@ -5,15 +5,16 @@ Shipping Revenue last month:
 **Solution**
 ```sql
 SELECT 
-  SUM(amount) 
-from 
-  order_adjustment 
+  SUM(oa.amount) AS ShippingRevenue
+FROM 
+  order_adjustment oa
 WHERE 
-  order_adjustment_type_id = 'SHIPPING_CHARGES' 
-  AND CREATED_DATE >= DATE_SUB(
-    CURDATE(), 
-    INTERVAL 1 MONTH
-  );
+  oa.order_adjustment_type_id = 'SHIPPING_CHARGES' 
+  AND oa.created_date >= DATE_FORMAT(
+    CURRENT_DATE - INTERVAL 1 MONTH, '%Y/%m/01'
+  ) 
+  AND oa.created_date < DATE_FORMAT(CURRENT_DATE, '%Y/%m/01');
 ```
+
 **Execution Cost --**   
 10,273
