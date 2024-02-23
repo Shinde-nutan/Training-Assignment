@@ -5,11 +5,12 @@ Shipment by Tracking number:
 **Solution**
 ```sql
 SELECT 
-  SHIPMENT_ID 
+  srs.shipment_id, 
+  srs.tracking_id_number 
 FROM 
-  shipment_route_segment 
+  shipment_route_segment srs 
 WHERE 
-  TRACKING_ID_NUMBER IS NOT NULL;
+  srs.tracking_id_number IS NOT NULL;
 ```
 **Execution cost --**    
 2,140.6
