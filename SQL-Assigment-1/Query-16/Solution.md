@@ -12,7 +12,7 @@ FROM
   JOIN shipment s on os.SHIPMENT_ID = s.SHIPMENT_ID 
   JOIN facility f on s.ORIGIN_FACILITY_ID = f.FACILITY_ID 
 WHERE 
-  sales_Channel_Enum_Id = 'POS_SALES_CHANNEL' 
+  oh.sales_Channel_Enum_Id = 'POS_SALES_CHANNEL' 
   AND f.FACILITY_TYPE_ID = 'WAREHOUSE';
 ```
 **Execution Cost --**   
