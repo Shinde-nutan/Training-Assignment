@@ -3,11 +3,15 @@ Fetch the inventory variances of the products where the reason is ‘VAR_LOST’
 **Solution –** 
 ```sql
 SELECT
-    i_item.PRODUCT_ID,
-    iv.PHYSICAL_INVENTORY_ID
-FROM Inventory_Item_Variance iv
-JOIN Inventory_Item i_item ON iv.INVENTORY_ITEM_ID = i_item.INVENTORY_ITEM_ID
-WHERE iv.variance_Reason_Id IN ('VAR_LOST', 'VAR_DAMAGED');
+	i_item.PRODUCT_ID,
+	iv.PHYSICAL_INVENTORY_ID,
+	iv.VARIANCE_REASON_ID
+FROM
+	Inventory_Item_Variance iv
+JOIN Inventory_Item i_item ON
+	iv.INVENTORY_ITEM_ID = i_item.INVENTORY_ITEM_ID
+WHERE
+	iv.variance_Reason_Id IN ('VAR_LOST', 'VAR_DAMAGED');
 ```
 
 **Execution Plan**
