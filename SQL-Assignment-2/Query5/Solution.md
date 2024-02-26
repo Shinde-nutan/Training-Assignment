@@ -12,13 +12,13 @@ SELECT
     oi_id.ID_VALUE,
     gi.ID_VALUE
 FROM
-    Order_Item oi
+    order_item oi
 JOIN
-    Order_Status os ON oi.ORDER_ID = os.ORDER_ID AND oi.ORDER_ITEM_SEQ_ID = os.ORDER_ITEM_SEQ_ID
+    order_status os ON oi.ORDER_ID = os.ORDER_ID AND oi.ORDER_ITEM_SEQ_ID = os.ORDER_ITEM_SEQ_ID
 JOIN
-    Order_Identification oi_id ON oi.ORDER_ID = oi_id.ORDER_ID
+    order_identification oi_id ON oi.ORDER_ID = oi_id.ORDER_ID
 JOIN
-    Good_Identification gi ON oi.PRODUCT_ID = gi.PRODUCT_ID
+    good_identification gi ON oi.PRODUCT_ID = gi.PRODUCT_ID
 WHERE
     os.STATUS_ID = 'ITEM_COMPLETED'
     AND MONTH(os.STATUS_DATETIME) = 7
