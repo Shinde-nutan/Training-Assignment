@@ -14,7 +14,7 @@ JOIN
 GROUP BY
     pa.CITY
 ORDER BY
-    ReturnCount DESC;
+    COUNT(DISTINCT rh.RETURN_ID) DESC;
 ```
 
 **Query Cost**
