@@ -23,7 +23,7 @@ WHERE
 GROUP BY
     oi.PRODUCT_ID
 ORDER BY
-    SalesCount DESC
+    SUM(oi.QUANTITY) DESC
 LIMIT 1;
 ```
 
@@ -51,7 +51,7 @@ WHERE
 GROUP BY
     oi.PRODUCT_ID
 ORDER BY
-    SalesCount DESC
+    SUM(oi.QUANTITY) DESC
 LIMIT 1;
 ```
 
