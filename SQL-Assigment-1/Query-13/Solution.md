@@ -4,19 +4,24 @@ Storewize Revenue:
 
 **Solution**
 ```sql
-SELECT
-  f.facility_id, 
-  SUM(oi.quantity * oi.unit_price) AS Revenue 
-FROM 
-  order_item oi 
-  JOIN order_item_ship_group_assoc oisga ON oisga.ORDER_ID = oi.ORDER_ID 
-  AND oisga.ORDER_ITEM_SEQ_ID = oi.ORDER_ITEM_SEQ_ID 
-  JOIN order_item_ship_group oisg ON oisg.ORDER_ID = oisga.ORDER_ID 
-  AND oisg.SHIP_GROUP_SEQ_ID = oisga.SHIP_GROUP_SEQ_ID 
-  JOIN facility f ON oisg.FACILITY_ID  = f.FACILITY_ID  
-  where f.FACILITY_TYPE_ID IN ('OUTLET_STORE' , 'RETAIL_STORE') 
-GROUP BY
-  f.facility_id;
+select
+	f.facility_id,
+	SUM(oi.quantity * oi.unit_price) as Revenue
+from
+	order_item oi
+join order_item_ship_group_assoc oisga on
+	oisga.ORDER_ID = oi.ORDER_ID
+	and oisga.ORDER_ITEM_SEQ_ID = oi.ORDER_ITEM_SEQ_ID
+join order_item_ship_group oisg on
+	oisg.ORDER_ID = oisga.ORDER_ID
+	and oisg.SHIP_GROUP_SEQ_ID = oisga.SHIP_GROUP_SEQ_ID
+join facility f on
+	oisg.FACILITY_ID = f.FACILITY_ID
+join facility_type ft on
+	f.FACILITY_TYPE_ID = ft.FACILITY_TYPE_ID
+	and ft.PARENT_TYPE_ID = 'PHYSICAL_STORE'
+group by
+	f.facility_id;
 ```
 **Execution Cost --**
-143,729.13
+5,780.44
