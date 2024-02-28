@@ -1,7 +1,9 @@
 Fetch all the physical items completed from Warehouse in September of 2023.
 
 **Solution –**
-```sqlselect
+```sql
+
+select
 	oi.ORDER_ID,
 	oi.ORDER_ITEM_SEQ_ID,
 	oi.PRODUCT_ID,
@@ -25,13 +27,15 @@ join order_item_ship_group oisg on
 	and oisg.SHIP_GROUP_SEQ_ID = oisga.SHIP_GROUP_SEQ_ID
 join facility f on
 	oisg.facility_id = f.facility_id
+join facility_type ft on
+	f.facility_type_id = ft.facility_type_id
 where
 	os.STATUS_ID = 'ITEM_COMPLETED'
 	and pt.IS_PHYSICAL = 'Y'
-	and f.FACILITY_TYPE_ID = 'WAREHOUSE'
+	and ft.parent_TYPE_ID = 'DISTRIBUTION_CENTRE'
 	and month(os.STATUS_DATETIME) = 9
 	and year(os.STATUS_DATETIME) = 2023;
 ```
 
 **Execution Plan**
-COST - 19,660.01
+COST - 7,862.55
