@@ -21,4 +21,4 @@ where
 	and ft.PARENT_TYPE_ID = 'DISTRIBUTION_CENTER';
 ```
 **Execution Cost --**   
-3,826.21
+2,324.2
