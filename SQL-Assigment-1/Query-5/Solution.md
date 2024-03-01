@@ -4,15 +4,18 @@ Last week imported orders & items count:
 
 **Solution**
 ```sql
-SELECT 
-  COUNT(*) as totalOrder, 
-  SUM(oi.quantity) as TotalOrderItem 
-FROM 
-  order_header AS oh 
-  JOIN order_item AS oi ON oh.ORDER_ID = oi.ORDER_ID 
-WHERE 
-  ENTRY_DATE >= CURRENT_DATE() - INTERVAL 7 DAY;
+select
+	COUNT(*) as totalOrder,
+	SUM(oi.quantity) as TotalOrderItem
+from
+	order_header as oh
+join order_item as oi on
+	oh.ORDER_ID = oi.ORDER_ID
+where
+	ENTRY_DATE between 
+    DATE(curdate() - interval WEEKDAY(curdate()) + 1 day) - interval 7 day 
+    and DATE(curdate() - interval WEEKDAY(curdate()) + 1 day) - interval 1 day;
 ```
 
 **Execution Cost --**   
-27,178.1
+5,143.53 
