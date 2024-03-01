@@ -21,7 +21,7 @@ where
 	(s.ORIGIN_FACILITY_ID = '904'
 		or s.ORIGIN_FACILITY_ID = '906')
 	and ss.STATUS_DATE >= '2022-01-01'
-	and ss.STATUS_DATE < '2022-03-01'
+	and ss.STATUS_DATE < '2022-03-31'
 	and ss.STATUS_ID = 'SHIPMENT_SHIPPED'
 	and oh.CURRENCY_UOM = 'USD';
 ```
