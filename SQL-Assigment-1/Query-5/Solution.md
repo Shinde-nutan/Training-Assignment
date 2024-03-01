@@ -12,10 +12,9 @@ from
 join order_item as oi on
 	oh.ORDER_ID = oi.ORDER_ID
 where
-	ENTRY_DATE between 
-    DATE(curdate() - interval WEEKDAY(curdate()) + 1 day) - interval 7 day 
-    and DATE(curdate() - interval WEEKDAY(curdate()) + 1 day) - interval 1 day;
+	ENTRY_DATE >= DATE(curdate() - interval WEEKDAY(curdate()) + 1 day) - interval 7 day
+	and ENTRY_DATE < DATE(curdate() - interval WEEKDAY(curdate()) + 1 day) - interval 1 day;
 ```
 
 **Execution Cost --**   
-5,143.53 
+5,143.29
