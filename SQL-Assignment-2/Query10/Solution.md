@@ -20,44 +20,50 @@ Fetch all the order items that are in the created status and the order type shou
 
 **Solution –** 
 ```sql
-SELECT 
-  oi.ORDER_ID, 
-  p.PRODUCT_TYPE_ID, 
-  oi.ORDER_ITEM_SEQ_ID, 
-  oh.EXTERNAL_ID, 
-  oh.SALES_CHANNEL_ENUM_ID, 
-  oi.QUANTITY, 
-  oi.STATUS_ID AS ITEM_STATUS, 
-  oi.PRODUCT_ID, 
-  pb.CITY AS BILL_CITY, 
-  pb.COUNTRY_GEO_ID AS BILL_COUNTRY, 
-  pb.POSTAL_CODE AS BILL_POSTALCODE, 
-  pb.ADDRESS1 AS BILL_ADDRESS1, 
-  pb.ADDRESS2 AS BILL_ADDRESS2, 
-  ps.CITY AS SHIP_CITY, 
-  ps.COUNTRY_GEO_ID AS SHIP_COUNTRY, 
-  ps.POSTAL_CODE AS SHIP_POSTALCODE, 
-  ps.ADDRESS1 AS SHIP_ADDRESS1, 
-  ps.ADDRESS2 AS SHIP_ADDRESS2 
-FROM 
-  order_item oi 
-  JOIN product p ON oi.PRODUCT_ID = p.PRODUCT_ID 
-  JOIN order_status os ON oi.ORDER_ID = os.ORDER_ID 
-  AND oi.ORDER_ITEM_SEQ_ID = os.ORDER_ITEM_SEQ_ID 
-  AND os.STATUS_ID = oi.STATUS_ID 
-  JOIN order_header oh ON oi.ORDER_ID = oh.ORDER_ID 
-  JOIN order_contact_mech ocm ON oi.ORDER_ID = ocm.ORDER_ID 
-  AND ocm.CONTACT_MECH_PURPOSE_TYPE_ID IN (
-    'BILLING_LOCATION', 'SHIPPING_LOCATION'
-  ) 
-  LEFT JOIN postal_address pb ON ocm.CONTACT_MECH_ID = pb.CONTACT_MECH_ID 
-  AND ocm.CONTACT_MECH_PURPOSE_TYPE_ID = 'BILLING_LOCATION' 
-  LEFT JOIN postal_address ps ON ocm.CONTACT_MECH_ID = ps.CONTACT_MECH_ID 
-  AND ocm.CONTACT_MECH_PURPOSE_TYPE_ID = 'SHIPPING_LOCATION' 
-WHERE 
-  os.STATUS_ID = 'ITEM_CREATED' 
-  AND oh.ORDER_TYPE_ID = 'SALES_ORDER';
+select
+	oi.ORDER_ID,
+	p.PRODUCT_TYPE_ID,
+	oi.ORDER_ITEM_SEQ_ID,
+	oh.EXTERNAL_ID,
+	oh.SALES_CHANNEL_ENUM_ID,
+	oi.QUANTITY,
+	oi.STATUS_ID as ITEM_STATUS,
+	oi.PRODUCT_ID,
+	pb.CITY as BILL_CITY,
+	pb.COUNTRY_GEO_ID as BILL_COUNTRY,
+	pb.POSTAL_CODE as BILL_POSTALCODE,
+	pb.ADDRESS1 as BILL_ADDRESS1,
+	pb.ADDRESS2 as BILL_ADDRESS2,
+	ps.CITY as SHIP_CITY,
+	ps.COUNTRY_GEO_ID as SHIP_COUNTRY,
+	ps.POSTAL_CODE as SHIP_POSTALCODE,
+	ps.ADDRESS1 as SHIP_ADDRESS1,
+	ps.ADDRESS2 as SHIP_ADDRESS2
+from
+	order_item oi
+join product p on
+	oi.PRODUCT_ID = p.PRODUCT_ID
+join order_status os on
+	oi.ORDER_ID = os.ORDER_ID
+	and oi.ORDER_ITEM_SEQ_ID = os.ORDER_ITEM_SEQ_ID
+	and os.STATUS_ID = oi.STATUS_ID
+join order_header oh on
+	oi.ORDER_ID = oh.ORDER_ID
+join order_contact_mech ocm on
+	oi.ORDER_ID = ocm.ORDER_ID
+	and (ocm.CONTACT_MECH_PURPOSE_TYPE_ID = 'BILLING_LOCATION'
+		or ocm.CONTACT_MECH_PURPOSE_TYPE_ID = 'SHIPPING_LOCATION'
+  )
+left join postal_address pb on
+	ocm.CONTACT_MECH_ID = pb.CONTACT_MECH_ID
+	and ocm.CONTACT_MECH_PURPOSE_TYPE_ID = 'BILLING_LOCATION'
+left join postal_address ps on
+	ocm.CONTACT_MECH_ID = ps.CONTACT_MECH_ID
+	and ocm.CONTACT_MECH_PURPOSE_TYPE_ID = 'SHIPPING_LOCATION'
+where
+	os.STATUS_ID = 'ITEM_CREATED'
+	and oh.ORDER_TYPE_ID = 'SALES_ORDER';
 ```
 
 **Execution Plan**
-COST - 171,587.11
+COST - 58,300.14
