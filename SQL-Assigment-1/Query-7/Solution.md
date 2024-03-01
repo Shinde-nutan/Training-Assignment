@@ -4,16 +4,18 @@ Payment captured but not shipped order items:
 
 **Solution**
 ```sql
-SELECT 
-  oi.ORDER_ID 
-FROM 
-  order_item oi 
-  JOIN order_payment_preference opp ON oi.ORDER_ID = opp.ORDER_ID 
-WHERE 
-  opp.STATUS_ID = 'PAYMENT_SETTLED' 
-  AND oi.STATUS_ID NOT IN (
-    'ITEM_CANCELLED', 'ITEM_COMPLETED'
+select
+	oi.ORDER_ID
+from
+	order_item oi
+join order_payment_preference opp on
+	oi.ORDER_ID = opp.ORDER_ID
+where
+	opp.STATUS_ID = 'PAYMENT_SETTLED'
+	and (
+  oi.STATUS_ID != 'ITEM_CANCELLED'
+		and oi.STATUS_ID != 'ITEM_COMPLETED'
   );
 ```
 **Execution Cost --**    
-22,724.5
+7,079.75
