@@ -5,21 +5,26 @@ Total $ value of shipments shipped from facility 904/906 to first quarter:
 
 **Solution**
 ```sql
-SELECT 
-  SUM(oi.UNIT_PRICE * oi.QUANTITY) AS TotalMonetaryValue 
-FROM 
-  order_header oh 
-  JOIN order_item oi ON oh.ORDER_ID = oi.ORDER_ID 
-  JOIN order_shipment os ON oh.ORDER_ID = os.ORDER_ID 
-  JOIN shipment s ON os.SHIPMENT_ID = s.SHIPMENT_ID 
-  JOIN shipment_status ss ON s.SHIPMENT_ID = ss.SHIPMENT_ID 
-WHERE 
-  s.ORIGIN_FACILITY_ID IN ('904', '906') 
-  AND ss.STATUS_DATE >= '2022-01-01' 
-  AND ss.STATUS_DATE < '2022-03-01' 
-  AND ss.STATUS_ID = 'SHIPMENT_SHIPPED' 
-  AND oh.CURRENCY_UOM = 'USD';
+select
+	SUM(oi.UNIT_PRICE * oi.QUANTITY) as TotalMonetaryValue
+from
+	order_header oh
+join order_item oi on
+	oh.ORDER_ID = oi.ORDER_ID
+join order_shipment os on
+	oh.ORDER_ID = os.ORDER_ID
+join shipment s on
+	os.SHIPMENT_ID = s.SHIPMENT_ID
+join shipment_status ss on
+	s.SHIPMENT_ID = ss.SHIPMENT_ID
+where
+	(s.ORIGIN_FACILITY_ID = '904'
+		or s.ORIGIN_FACILITY_ID = '906')
+	and ss.STATUS_DATE >= '2022-01-01'
+	and ss.STATUS_DATE < '2022-03-01'
+	and ss.STATUS_ID = 'SHIPMENT_SHIPPED'
+	and oh.CURRENCY_UOM = 'USD';
 ```
 
 **Execution Cost --**   
-1,548.74
+499.71
