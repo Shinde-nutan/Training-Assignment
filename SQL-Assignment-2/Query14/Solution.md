@@ -11,8 +11,8 @@ FROM
 JOIN Inventory_Item i_item ON
 	iv.INVENTORY_ITEM_ID = i_item.INVENTORY_ITEM_ID
 WHERE
-	iv.variance_Reason_Id IN ('VAR_LOST', 'VAR_DAMAGED');
+	iv.variance_Reason_Id = 'VAR_LOST'or iv.VARIANCE_REASON_ID = 'VAR_DAMAGED';
 ```
 
 **Execution Plan**
-COST - 46,057.23
+COST - 30,994.62
